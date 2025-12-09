@@ -1,7 +1,7 @@
 'use client';
 
 import { useRef, useEffect } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion, useScroll, useTransform, Variants } from 'framer-motion'; // Import Variants
 import Image from 'next/image';
 
 interface CarSectionProps {
@@ -25,17 +25,18 @@ export default function CarSection({ model, description, imageUrl, color, index 
   const textX = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [-100, 0, 0, -100]);
   const imageScale = useTransform(scrollYProgress, [0, 0.5, 1], [1, 1.1, 1]);
   
-  const modelVariants = {
+  // Add explicit Variants type annotation
+  const modelVariants: Variants = {
     hidden: { opacity: 0, y: 50 },
     visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } }
   };
   
-  const descriptionVariants = {
+  const descriptionVariants: Variants = {
     hidden: { opacity: 0, y: 30 },
     visible: { opacity: 1, y: 0, transition: { duration: 0.8, delay: 0.2, ease: "easeOut" } }
   };
   
-  const buttonVariants = {
+  const buttonVariants: Variants = {
     hidden: { opacity: 0, y: 20 },
     visible: { opacity: 1, y: 0, transition: { duration: 0.8, delay: 0.4, ease: "easeOut" } },
     hover: { scale: 1.05, backgroundColor: "#b5001a" }
